@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Technical Setup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>Technical Setup</h1></header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="introduction.html">Introduction</a>
+    <a href="state-of-the-art.html">State of the Art</a>
+    <a href="technical.html">Technical Setup</a>
+    <a href="demo.html">Demonstration</a>
+    <a href="conclusion.html">Conclusion</a>
+</nav>
+
+<main>
+    <h2>Installation</h2>
+    <pre>
+sudo apt update
+sudo apt install asterisk
+    </pre>
+
+    <h2>PJSIP Configuration</h2>
+    <pre>
+[1001]
+type=endpoint
+context=default
+allow=ulaw
+auth=1001
+aors=1001
+    </pre>
+
+    <h2>ConfBridge Configuration</h2>
+    <pre>
+[default_bridge]
+type=bridge
+max_members=10
+record_conference=yes
+    </pre>
+
+    <h2>Dialplan</h2>
+    <pre>
+exten => 600,1,Answer()
+ same => n,ConfBridge(1,default_bridge,user_profile)
+ same => n,Hangup()
+    </pre>
+</main>
+
+<footer>© 2025 — Asterisk ConfBridge Project</footer>
+
+</body>
+</html>
