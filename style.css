@@ -46,3 +46,192 @@ footer {
     color: white;
     margin-top: 40px;
 }
+
+
+blockquote {
+  margin: 1em 0;
+  padding: 1em 1.5em;
+  background: #f7f7f7;
+  border-left: 4px solid #4a90e2;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Section headings */
+h2 {
+    color: #263238; /* Darker than background */
+    margin-bottom: 15px;
+}
+
+h3 {
+    color: #37474F;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Paragraphs */
+p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+/* Lists */
+ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* Highlight key terms */
+strong {
+    color: #4a90e2;
+}
+
+/* Make blockquotes a bit more “friendly” */
+blockquote {
+    background: #e8f0fe; /* subtle blue tint */
+    border-left: 5px solid #4a90e2;
+    padding: 1em 1.5em;
+    margin: 1em 0;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.6;
+    border-radius: 4px;
+}
+
+/* Make links in nav slightly bigger and add hover effect */
+nav a {
+    font-size: 1.05rem;
+    transition: all 0.2s ease;
+}
+
+nav a:hover {
+    color: #4a90e2;
+}
+
+/* Responsive tweaks for smaller screens */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    main {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+}
+
+.logo-row {
+    display: flex;
+    justify-content: space-around; /* evenly space logos */
+    align-items: center;
+    margin: 20px 0;
+    flex-wrap: wrap; /* wraps nicely on smaller screens */
+    gap: 20px; /* spacing between logos */
+}
+
+.logo-row img {
+    height: 60px; /* all logos same height */
+    transition: transform 0.3s, filter 0.3s;
+    cursor: pointer;
+}
+
+/* hover effect to make it interactive */
+.logo-row img:hover {
+    transform: scale(1.1); /* slightly enlarge */
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.intro-logo, .intro-diagram {
+    display: block;
+    margin: 25px auto;
+    max-width: 500px;
+}
+
+.image-pair {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  flex-wrap: wrap; /* stacks on small screens */
+}
+
+.image-pair img {
+  width: 48%; /* two images per row */
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  display: block;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.image-pair img:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.16);
+}
+
+@media (max-width: 700px) {
+  .image-pair img {
+    width: 100%;
+  }
+}
+
+.protocol-block {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f8faff;            /* light block background */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s ease;
+}
+
+.protocol-block:hover {
+    transform: translateY(-3px);
+}
+
+/* Info highlight box */
+.diagram-info {
+    font-size: 0.95rem;
+    background: #eef5ff;
+    padding: 14px 18px;
+    border-left: 4px solid #4a90e2;
+    border-radius: 6px;
+    margin: 20px auto;
+    max-width: 720px;
+    line-height: 1.55;
+}
+
+/* Image card */
+.image-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover effect for the image card */
+.image-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Image itself */
+.protocol-img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+

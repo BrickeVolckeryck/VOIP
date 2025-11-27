@@ -1,44 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>State of the Art</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>State of the Art</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header><h1>State of the Art</h1></header>
+  <header>
+    <h1>State of the Art</h1>
+  </header>
 
-<nav>
+  <nav>
     <a href="index.html">Home</a>
     <a href="introduction.html">Introduction</a>
     <a href="state-of-the-art.html">State of the Art</a>
     <a href="technical.html">Technical Setup</a>
     <a href="demo.html">Demonstration</a>
     <a href="conclusion.html">Conclusion</a>
-</nav>
+  </nav>
 
-<main>
-    <h2>Alternatives to Asterisk</h2>
-    <ul>
-        <li>FreeSWITCH (mod_conference)</li>
-        <li>Jitsi</li>
-        <li>Zoom / Teams</li>
-        <li>Cisco Webex</li>
-    </ul>
+  <main>
+    <section>
+      <h2>State of the Art in VoIP Conferencing</h2>
 
-    <h2>Position of Asterisk</h2>
-    <p>Asterisk is widely used in VoIP PBX deployments, especially... (continue)</p>
+      <h3>Alternatives in VoIP Conferencing</h3>
+      <p>
+        When it comes to VoIP conferencing, there are many solutions available, ranging from open source to commercial
+        platforms. Some of the main alternatives are:
+      </p>
+      <ul>
+        <li>
+          <strong>Jitsi</strong>: A free and open source video and audio conferencing platform. It supports web-based
+          meetings, screen sharing, and group chat. Jitsi is popular for small teams or educational purposes because it
+          can be self-hosted and does not require expensive licenses.
+        </li>
+        <li>
+          <strong>FreeSWITCH with mod_conference</strong>: FreeSWITCH is another open source PBX system, and the
+          mod_conference module provides audio conferencing capabilities. It is very flexible and designed for advanced
+          telephony setups, but it is more complex to configure compared to Asterisk.
+        </li>
+        <li>
+          <strong>Zoom</strong>: One of the most popular commercial conferencing platforms. Zoom provides video, audio,
+          chat, and webinar features. It is cloud-based and very user-friendly, but requires a subscription for advanced
+          features.
+        </li>
+        <li>
+          <strong>Microsoft Teams</strong>: A commercial collaboration tool integrated with Microsoft 365. Teams
+          provides VoIP, chat, file sharing, and video conferencing. It is widely used in enterprises, especially those
+          already using Microsoft products.
+        </li>
+      </ul>
+      <p>
+        Each solution has different strengths and weaknesses. Open source solutions like Asterisk, Jitsi, and FreeSWITCH
+        offer flexibility and full control, while commercial platforms like Zoom and Teams prioritize ease of use,
+        reliability, and integration with other services.
+      </p>
 
-    <h2>Protocols</h2>
-    <ul>
-        <li>SIP (signaling)</li>
-        <li>RTP (audio transport)</li>
-        <li>PJSIP (Asterisk SIP stack)</li>
-    </ul>
-</main>
+      <div class="logo-row">
+        <img src="images/logo-web-2020.png" alt="Jitsi Logo">
+        <img src="images/freeswitch.jpg" alt="FreeSWITCH Logo">
+        <img src="images/Zoom_logo.svg" alt="Zoom Logo">
+        <img src="images/teams.jpg" alt="Microsoft Teams Logo">
+      </div>
 
-<footer>© 2025 — Asterisk ConfBridge Project</footer>
+
+      <h3>Position of Asterisk within VoIP Systems</h3>
+
+      <p>
+        Asterisk is a core VoIP server platform that can act as an IP PBX, a VoIP gateway, or a conference server. Its
+        position within a VoIP ecosystem is usually at the center of call management:
+      </p>
+      <ul>
+        <li>It handles the signaling and routing of calls between users, devices, and external networks.</li>
+        <li>It provides features such as voicemail, IVR menus, call queues, and audio conferencing.</li>
+        <li>It can interact with both open source and commercial endpoints, bridging different systems together.</li>
+      </ul>
+      <p>
+        In comparison, other conferencing platforms like Zoom or Teams are usually “all-in-one” cloud services.
+        Asterisk, on the other hand, is self-hosted and gives you full control over the infrastructure and
+        configuration. This makes it very popular for organizations that need custom setups, privacy, or integration
+        with existing telephony systems.
+      </p>
+
+      <div class="image-pair">
+        <img src="images/6645530_orig.png" alt="">
+        <img src="images/applsci-13-10712-g001.png" alt="">
+      </div>
+
+      <section>
+
+        <h3>Protocols Involved in VoIP Conferencing</h3>
+        <p>
+          Asterisk and other VoIP systems rely on several key protocols to make communication possible:
+        </p>
+        <ul>
+          <li>
+            <strong>SIP (Session Initiation Protocol)</strong>: The standard protocol used to set up, manage, and
+            terminate voice or video calls. SIP tells the endpoints (phones, softphones, apps) how to connect and
+            negotiate call parameters.
+          </li>
+          <li>
+            <strong>RTP (Real-Time Transport Protocol)</strong>: Responsible for delivering the actual audio or video
+            data during a call. While SIP manages the session, RTP carries the voice or video packets.
+          </li>
+          <li>
+            <strong>PJSIP (PJ Project SIP library)</strong>: A specific implementation of SIP used by Asterisk and some
+            other systems. PJSIP supports modern features, NAT traversal, and multiple transport protocols, making it
+            reliable and scalable for complex VoIP setups.
+          </li>
+        </ul>
+        <p>
+          Understanding these protocols is important because they define how calls are initiated, transmitted, and
+          maintained, which directly affects call quality, latency, and reliability.
+        </p>
+
+        <div class="protocol-block">
+          <h4>SIP — Session Initiation Protocol</h4>
+          <p>
+            SIP handles the setup, management, and termination of VoIP calls. It registers devices, negotiates
+            codecs, and controls how endpoints communicate. Because SIP uses simple text-based messages, it is
+            easy to debug and widely supported across networks and devices.
+          </p>
+
+          <p class="diagram-info">
+            The diagram below shows a simplified SIP call flow. One phone sends an <strong>INVITE</strong>,
+            followed by server responses like <strong>100 Trying</strong> and <strong>180 Ringing</strong>.
+            After the call is accepted, voice data flows between both endpoints. When either party hangs up, a
+            <strong>BYE</strong> message cleanly terminates the session. SIP manages every step of this process.
+          </p>
+
+          <div class="image-card">
+            <img src="images/SIP.png" alt="SIP Call Flow Diagram" class="protocol-img">
+          </div>
+        </div>
+
+
+        <div class="protocol-block">
+          <h4>RTP — Real-Time Transport Protocol</h4>
+          <p>
+            RTP carries the actual audio stream once a call is established. It sends the voice in small
+            packets with timestamps to ensure the sound plays smoothly and in the correct order. Working
+            together with RTCP, it monitors packet loss and delay to maintain call quality. With SRTP,
+            encryption can be applied, making VoIP calls secure from eavesdropping.
+          </p>
+
+          <p class="diagram-info">
+            The image illustrates the transition from <strong>call setup</strong> to <strong>media transmission</strong>
+             in a <strong>VoIP call</strong>. <strong>SIP (Session Initiation Protocol)</strong> first handles 
+             <strong>signaling</strong> by <strong>setting up</strong>, <strong>managing</strong>, and <strong>ending the call</strong>.
+              Once the call is established, <strong>RTP (Real-Time Transport Protocol)</strong> takes over to carry the actual <strong>audio</strong>
+               or <strong>video streams</strong>. RTP breaks the media into small <strong>packets</strong> with 
+               <strong>timestamps</strong> to ensure smooth and correctly ordered playback.
+                <strong>RTCP</strong> monitors <strong>packet loss</strong> and <strong>delay</strong>. <strong>SRTP</strong> can
+                 <strong>encrypt</strong> the stream to make calls <strong>secure</strong> from <strong>eavesdropping</strong>.
+          </p>
+
+          <div class="image-card">
+            <img src="images/SIP-protocol-network-diagram.avif" alt="SIP protocol network Diagram" class="protocol-img">
+          </div>
+
+          <p class="diagram-info">
+            The image illustrates an <strong>RTP packet’s structure</strong>. It includes a <strong>header</strong> containing <strong>version</strong>
+            , padding, extension flags, CSRC count, marker bit, <strong>payload type</strong>, <strong>sequence number</strong>,
+             <strong>timestamp</strong>, and <strong>SSRC</strong> (synchronization source identifier). Optionally, it can include
+              header extensions or a list of contributing sources (CSRCs). After the header comes the <strong>media payload</strong>
+               (audio or video), followed by optional padding bytes if the padding flag is set. This structure ensures <strong>media</strong>
+                is delivered in order, on time, and identifiable during transmission.
+          </p>
+
+          <div class="image-card">
+            <img src="images/rtp-packet-format-shown-in-32-bit.webp" alt="SIP protocol network Diagram" class="protocol-img">
+          </div>
+        </div>
+
+        <div class="protocol-block">
+          <h4>PJSIP — Modern SIP Stack for Asterisk</h4>
+          <p>
+            PJSIP is a newer, more advanced SIP stack used in Asterisk. It provides better performance,
+            scalability, and security compared to the older chan_sip driver. PJSIP supports multiple
+            transport methods (UDP, TCP, TLS, WebSocket), strong NAT traversal through STUN/TURN/ICE, and
+            allows one user to register on multiple devices at the same time. Its modular architecture
+            makes it easier to configure and maintain complex VoIP deployments.
+          </p>
+        </div>
+
+
+      </section>
+    </section>
+
+  </main>
+
+  <footer>© 2025 — Asterisk ConfBridge Project</footer>
 
 </body>
+
 </html>
