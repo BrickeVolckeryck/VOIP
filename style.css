@@ -234,4 +234,61 @@ nav a:hover {
     border-radius: 10px;
 }
 
+.demo-img {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 15px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
 
+.zoom-img {
+    max-width: 350px;
+}
+
+.big-img {
+    max-width: 800px;
+}
+
+.demo-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.code-container {
+    display: flex;
+    flex-wrap: wrap;      /* allow wrapping on small screens */
+    gap: 20px;            /* space between code blocks */
+}
+
+.code-block {
+    flex: 1 1 48%;        /* roughly half width */
+    background-color: #4a90e2;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 800px) {
+    .code-block {
+        flex: 1 1 100%;   /* stack vertically on small screens */
+    }
+}
+
+/* Style for all code elements in your text */
+code {
+    font-size: 1.1em;          /* Slightly larger font */
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 2px 4px;          /* Small padding for readability */
+    border-radius: 3px;        /* Rounded corners */
+    font-family: monospace;    /* Monospace for code look */
+}
