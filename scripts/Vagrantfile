@@ -1,0 +1,18 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "almalinux/9"
+  config.vm.hostname = "asterisk-confbridge"
+
+  # 1. Host-only network (internal testing)
+  config.vm.network "private_network", ip: "192.168.56.20"
+
+  # 2. Bridged network (phones and laptops on LAN/WiFi)
+  config.vm.network "public_network"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "Asterisk_ConfBridge_VM"
+    vb.memory = 2048
+    vb.cpus = 2
+  end
+
+  config.vm.provision "shell", path: "provision.sh"
+end
