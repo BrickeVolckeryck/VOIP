@@ -1,216 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Technical Setup</title>
     <link rel="stylesheet" href="style.css">
 </head>
-²<body>
+²
 
-<header><h1>Technical Setup</h1></header>
+<body>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="introduction.html">Introduction</a>
-    <a href="state-of-the-art.html">State of the Art</a>
-    <a href="technical.html">Technical Setup</a>
-    <a href="demo.html">Demonstration</a>
-    <a href="conclusion.html">Conclusion</a>
-</nav>
+    <header>
+        <h1>Technical Setup</h1>
+    </header>
 
-<main>
-    <h2>Installation & PJSIP Configuration</h2>
-    <div class="code-container">
-        <div class="code-block">
-            <pre>
-Vagrant.configure("2") do |config|
-  config.vm.box = "almalinux/9"
-  config.vm.hostname = "asterisk-confbridge"
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="introduction.html">Introduction</a>
+        <a href="state-of-the-art.html">State of the Art</a>
+        <a href="technical.html">Technical Setup</a>
+        <a href="demo.html">Demonstration</a>
+        <a href="conclusion.html">Conclusion</a>
+    </nav>
 
-  # 1. Host-only network (internal testing)
-  config.vm.network "private_network", ip: "192.168.56.20"
+    <main>
+        <section id="scripts">
+            <h2>Configuration & Scripts</h2>
 
-  # 2. Bridged network (phones and laptops on LAN/WiFi)
-  config.vm.network "public_network"
+            <p>Here you can view all configuration files used in this project. You can also download everything as a ZIP archive.</p>
 
-  config.vm.provider "virtualbox" do |vb|
-    vb.name = "Asterisk_ConfBridge_VM"
-    vb.memory = 2048
-    vb.cpus = 2
-  end
+            <a href="downloads/scripts.zip" class="download-btn" download>Download All Scripts (ZIP)</a>
 
-  config.vm.provision "shell", path: "provision.sh"
-end
+            <div class="script-block">
+                <button class="script-toggle">Vagrantfile</button>
+                <pre><code id="Vagrantfile"></code></pre>
+            </div>
 
------------------------------------------------------------------------------
+            <div class="script-block">
+                <button class="script-toggle">provision.sh</button>
+                <pre><code id="provision"></code></pre>
+            </div>
 
-#!/bin/bash
-set -e
+            <div class="script-block">
+                <button class="script-toggle">confbridge.conf</button>
+                <pre><code id="confbridge"></code></pre>
+            </div>
 
-echo "=== Updating system ==="
-dnf -y update
+            <div class="script-block">
+                <button class="script-toggle">extensions.conf</button>
+                <pre><code id="extensions"></code></pre>
+            </div>
 
-echo "=== Enabling EPEL repository ==="
-dnf -y install epel-release
+            <div class="script-block">
+                <button class="script-toggle">pjsip.conf</button>
+                <pre><code id="pjsip"></code></pre>
+            </div>
 
-echo "=== Installing Asterisk (EL9-compatible) ==="
-dnf -y install asterisk asterisk-pjsip asterisk-voicemail
+            <div class="script-block">
+                <button class="script-toggle">rtp.conf</button>
+                <pre><code id="rtp"></code></pre>
+            </div>
 
-echo "=== Setting permissions for Asterisk directories ==="
-for dir in /etc/asterisk /var/lib/asterisk /var/log/asterisk /var/spool/asterisk /run/asterisk; do
-    mkdir -p "$dir"
-    chown -R asterisk:asterisk "$dir"
-    chmod -R 750 "$dir"
-done
+        </section>
 
-echo "=== Enabling and starting Asterisk ==="
-systemctl enable --now asterisk
+        <script src="app.js"></script>
 
-echo "=== Deploying configuration files ==="
-cp /vagrant/pjsip.conf /etc/asterisk/pjsip.conf
-cp /vagrant/extensions.conf /etc/asterisk/extensions.conf
-cp /vagrant/confbridge.conf /etc/asterisk/confbridge.conf
-cp /vagrant/rtp.conf /etc/asterisk/rtp.conf
+    </main>
 
-chown -R asterisk:asterisk /etc/asterisk
-
-echo "=== Restarting Asterisk to load configs ==="
-systemctl restart asterisk
-
-echo "=== Waiting for Asterisk to initialize ==="
-sleep 5
-
-echo "=== Verifying Asterisk installation ==="
-sudo -u asterisk asterisk -rx "core show version"
-sudo -u asterisk asterisk -rx "module show like confbridge"
-
-echo "=== Asterisk Provisioning Completed Successfully ==="
-            </pre>
-        </div>
-
-        <div class="code-block">
-            <pre>
-[transport-udp]
-type=transport
-protocol=udp
-bind=0.0.0.0
-local_net=192.168.250.0/24
-
-[1001]
-type=endpoint
-context=default
-disallow=all
-allow=ulaw,alaw,opus
-auth=1001-auth
-aors=1001
-direct_media=no
-message_context=messages
-
-[1001-auth]
-type=auth
-auth_type=userpass
-username=1001
-password=1001pass
-
-[1001]
-type=aor
-max_contacts=3
-
-[1002]
-type=endpoint
-context=default
-disallow=all
-allow=ulaw,alaw,opus
-auth=1002-auth
-aors=1002
-direct_media=no
-message_context=messages
-
-[1002-auth]
-type=auth
-auth_type=userpass
-username=1002
-password=1002pass
-
-[1002]
-type=aor
-max_contacts=3
-
-[1003]
-type=endpoint
-context=default
-disallow=all
-allow=ulaw,alaw,opus
-auth=1003-auth
-aors=1003
-direct_media=no
-message_context=messages
-
-[1003-auth]
-type=auth
-auth_type=userpass
-username=1003
-password=1003pass
-
-[1003]
-type=aor
-max_contacts=3
-            </pre>
-        </div>
-    </div>
-
-    <h2>ConfBridge & Dialplan</h2>
-    <div class="code-container">
-        <div class="code-block">
-            <pre>
-[general]
-
-[default_bridge]
-type=bridge
-max_members=20
-
-[user_profile]
-type=user
-
-[admin_profile]
-type=user
-admin=yes
-marked=yes
-            </pre>
-        </div>
-
-        <div class="code-block">
-            <pre>
-[general]
-static=yes
-writeprotect=no
-
-[default]
-
-exten => 600,1,Answer()
- same  => n,ConfBridge(1,default_bridge,user_profile)
- same  => n,Hangup()
-
-; for admins joining the confbridge call
-exten => 601,1,Answer()
- same  => n,ConfBridge(1,default_bridge,admin_profile)
- same  => n,Hangup()
-
-; for normal calling between users
-exten => _1XXX,1,NoOp(Calling ${EXTEN})
- same  => n,Dial(PJSIP/${EXTEN},20)
- same  => n,Hangup()
-
-[messages]
-exten => _1XXX,1,NoOp(SIP MESSAGE to ${EXTEN} from ${CALLERID(num)})
- same  => n,MessageSend(pjsip:${EXTEN},${CALLERID(num)})
- same  => n,Hangup()
-            </pre>
-        </div>
-    </div>
-</main>
-
-<footer>© 2025 — Asterisk ConfBridge Project</footer>
+    <footer>© 2025 — Asterisk ConfBridge Project</footer>
 
 </body>
+
 </html>

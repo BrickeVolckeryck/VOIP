@@ -1,139 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Demonstration</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Demonstration</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header><h1>Practical Demonstration</h1></header>
+  <header>
+    <h1>Practical Demonstration</h1>
+  </header>
 
-<nav>
+  <nav>
     <a href="index.html">Home</a>
     <a href="introduction.html">Introduction</a>
     <a href="state-of-the-art.html">State of the Art</a>
     <a href="technical.html">Technical Setup</a>
     <a href="demo.html">Demonstration</a>
     <a href="conclusion.html">Conclusion</a>
-</nav>
+  </nav>
 
-<main>
+  <main>
     <h2>Test Setup</h2>
     <p>
-The setup consists of an Asterisk virtual machine running on a AlmaLinux/9 host, configured as a SIP-based PBX and conference server. 
-The Asterisk VM has essential configuration files including <code>pjsip.conf</code> for defining SIP endpoints like Linphone clients, 
-<code>extensions.conf</code> for dialplan rules that route calls and handle conferences, and <code>confbridge.conf</code> for managing conference rooms and participant settings. 
-<code>pjsip.conf</code> specifies each user’s credentials, IP, and allowed codecs, while <code>extensions.conf</code> defines how calls are directed—such as joining a ConfBridge room. 
-<code>confbridge.conf</code> sets conference parameters like music-on-hold, participant limits, and admin privileges. 
-Linphone clients connect over SIP using the credentials defined in <code>pjsip.conf</code>, register with the Asterisk VM, 
-and can then place or join calls according to the dialplan, allowing users to participate in voice conferences with audio routed entirely through the Asterisk server.
-</p>
-</br>
+      The setup consists of an Asterisk virtual machine running on a AlmaLinux/9 host, configured as a SIP-based PBX and
+      conference server.
+      The Asterisk VM has essential configuration files including <code>pjsip.conf</code> for defining SIP endpoints
+      like Linphone clients,
+      <code>extensions.conf</code> for dialplan rules that route calls and handle conferences, and
+      <code>confbridge.conf</code> for managing conference rooms and participant settings.
+      <code>pjsip.conf</code> specifies each user’s credentials, IP, and allowed codecs, while
+      <code>extensions.conf</code> defines how calls are directed—such as joining a ConfBridge room.
+      <code>confbridge.conf</code> sets conference parameters like music-on-hold, participant limits, and admin
+      privileges.
+      Linphone clients connect over SIP using the credentials defined in <code>pjsip.conf</code>, register with the
+      Asterisk VM,
+      and can then place or join calls according to the dialplan, allowing users to participate in voice conferences
+      with audio routed entirely through the Asterisk server.
+    </p>
+    </br>
     <h2>Linphone</h2>
 
-<img src="images/demo/1.png" alt="linphone SIP account" class="demo-img">
+    <img src="images/demo/1.png" alt="linphone SIP account" class="demo-img">
 
-<p>
-  The user uses a softphone application (Linphone) to connect to the Asterisk server. In the softphone settings, you enter
-  the username and password that are defined in the <code>pjsip.conf</code> file on the server. The SIP domain is
-  set to the IP address of the Asterisk server (in this case, the AlmaLinux VM), which tells the softphone where
-  to send its SIP REGISTER requests.
-</p>
+    <p>
+      The user uses a softphone application (Linphone) to connect to the Asterisk server. In the softphone settings, you
+      enter
+      the username and password that are defined in the <code>pjsip.conf</code> file on the server. The SIP domain is
+      set to the IP address of the Asterisk server (in this case, the AlmaLinux VM), which tells the softphone where
+      to send its SIP REGISTER requests.
+    </p>
 
-<p>
-  When the softphone attempts to register, it sends a SIP <strong>REGISTER</strong> message to the server,
-  announcing its contact address so the server knows where to route incoming calls. Asterisk checks the
-  credentials provided by the softphone and, if they match the configuration in <code>pjsip.conf</code>, it
-  authenticates the user and completes the registration.
-</p>
+    <p>
+      When the softphone attempts to register, it sends a SIP <strong>REGISTER</strong> message to the server,
+      announcing its contact address so the server knows where to route incoming calls. Asterisk checks the
+      credentials provided by the softphone and, if they match the configuration in <code>pjsip.conf</code>, it
+      authenticates the user and completes the registration.
+    </p>
 
-<p>
-  Communication uses <strong>UDP</strong>, which is commonly chosen for VoIP because it introduces less overhead
-  and latency compared to TCP. Although UDP does not guarantee packet delivery or ordering, real-time voice traffic
-  benefits more from speed and low delay than from reliability mechanisms, making it the preferred protocol for SIP
-  signaling and RTP audio streams.
-</p>
+    <p>
+      Communication uses <strong>UDP</strong>, which is commonly chosen for VoIP because it introduces less overhead
+      and latency compared to TCP. Although UDP does not guarantee packet delivery or ordering, real-time voice traffic
+      benefits more from speed and low delay than from reliability mechanisms, making it the preferred protocol for SIP
+      signaling and RTP audio streams.
+    </p>
 
-<br>
-</br>
+    <br>
+    </br>
 
-<img src="images/demo/2.png" alt="SIP URI" class="demo-img">
+    <img src="images/demo/2.png" alt="SIP URI" class="demo-img">
 
 
-<p><code>sip:1001@192.168.250.37</code> is a SIP URI (Uniform Resource Identifier) that identifies a specific SIP user on a server.</p>
-<ul>
-  <li><strong>1001</strong> is the username or extension of the user.</li>
-  <li><strong>@</strong> separates the username from the domain.</li>
-  <li><strong>192.168.250.37</strong> is the SIP domain, usually the IP address or hostname of the SIP/Asterisk server.</li>
-</ul>
-<p>So <code>sip:1001@192.168.250.37</code> essentially tells the network: “I want to reach the SIP user <strong>1001</strong> on the server at <strong>192.168.250.37</strong>.” It’s similar to an email address but for voice over IP, and it’s used in registration, dialing, and routing calls between SIP endpoints.</p>
+    <p><code>sip:1001@192.168.250.37</code> is a SIP URI (Uniform Resource Identifier) that identifies a specific SIP
+      user on a server.</p>
+    <ul>
+      <li><strong>1001</strong> is the username or extension of the user.</li>
+      <li><strong>@</strong> separates the username from the domain.</li>
+      <li><strong>192.168.250.37</strong> is the SIP domain, usually the IP address or hostname of the SIP/Asterisk
+        server.</li>
+    </ul>
+    <p>So <code>sip:1001@192.168.250.37</code> essentially tells the network: “I want to reach the SIP user
+      <strong>1001</strong> on the server at <strong>192.168.250.37</strong>.” It’s similar to an email address but for
+      voice over IP, and it’s used in registration, dialing, and routing calls between SIP endpoints.</p>
 
-<br>
-</br>
+    <br>
+    </br>
 
-<img src="images/demo/call.png" alt="incoming call" class="demo-img">
-<img src="images/demo/zoom.png" alt="incoming call - zoom" class="demo-img zoom-img">
+    <img src="images/demo/call.png" alt="incoming call" class="demo-img">
 
-<p>
-  When receiving an incoming call from user <strong>1002</strong>, the popup shows
-  <code>sip:1002@10.0.2.15</code>. It displays this address instead of the Asterisk server’s
-  <strong>192.168.250.37</strong> because Linphone shows the IP address that the caller’s device actually
-  registered with. Since the Asterisk server is running inside a VirtualBox VM, VirtualBox gives the VM a NAT
-  interface in the <code>10.0.2.x</code> range. When the caller (1002), who is on the same
-  <strong>192.168.250.0/24</strong> LAN, registers to Asterisk, their connection passes through the VM’s NAT
-  interface. As a result, Asterisk stores <code>10.0.2.15</code> as the caller’s contact address, and that is the
-  address Linphone displays during the incoming call notification.
-</p>
+    <br>
 
-<br>
-</br>
+    <img src="images/demo/zoom.png" alt="incoming call - zoom" class="demo-img zoom-img">
 
-<img src="images/demo/call1001.png" alt="call on 1001 side" class="demo-img">
-<img src="images/demo/call1002.png" alt="call on 1002 side" class="demo-img"> 
-<!-- nicht ^^ (mss naast elkaar?) -->
+    <p>
+      When receiving an incoming call from user <strong>1002</strong>, the popup shows
+      <code>sip:1002@10.0.2.15</code>. It displays this address instead of the Asterisk server’s
+      <strong>192.168.250.37</strong> because Linphone shows the IP address that the caller’s device actually
+      registered with. Since the Asterisk server is running inside a VirtualBox VM, VirtualBox gives the VM a NAT
+      interface in the <code>10.0.2.x</code> range. When the caller (1002), who is on the same
+      <strong>192.168.250.0/24</strong> LAN, registers to Asterisk, their connection passes through the VM’s NAT
+      interface. As a result, Asterisk stores <code>10.0.2.15</code> as the caller’s contact address, and that is the
+      address Linphone displays during the incoming call notification.
+    </p>
 
-<p>
-  These two images show a Linphone call from both sides, with the caller displayed at the top as
-  <code>100X@10.0.2.15</code>. On the server side, the Asterisk server has received a SIP INVITE from
-  user 1002 and has routed the call to our Linphone client. Asterisk manages the signaling for the call,
-  ensuring both endpoints know how to establish a direct media path (RTP) for the audio, while handling
-  call states, authentication, and any dial plan rules in the background.
-</p>
+    <br>
+    </br>
+    <div class="image-row2">
+      <img src="images/demo/call1001.png" alt="call on 1001 side" class="demo-img2">
+      <img src="images/demo/Schermafbeelding 2025-11-28 174100.png" alt="call on 1002 side" class="demo-img2">
+    </div>
 
-<br>
-</br>
+    <br>
 
-<img src="images/demo/600.png" alt="numpad dial 600" class="demo-img"> 
+    <p>
+      These two images show a Linphone call from both sides, with the caller displayed at the top as
+      <code>100X@10.0.2.15</code>. On the server side, the Asterisk server has received a SIP INVITE from
+      user 1002 and has routed the call to our Linphone client. Asterisk manages the signaling for the call,
+      ensuring both endpoints know how to establish a direct media path (RTP) for the audio, while handling
+      call states, authentication, and any dial plan rules in the background.
+    </p>
 
-<p>
-  This Linphone screenshot shows the dialpad with <strong>600</strong> entered, displaying
-  <code>sip:600@192.168.250.37</code> at the top and the option to place the call. When we press
-  the <strong>Call</strong> button, Linphone sends a SIP INVITE to the Asterisk server at
-  <strong>192.168.250.37</strong> for extension 600. On the server side, Asterisk consults
-  <code>extensions.conf</code> and sees that extension 600 is configured to join a conference via
-  <code>ConfBridge</code>. The server then sets up the call and connects our Linphone client into the
-  conference room.
-</p>
+    <br>
+    </br>
 
-<p>
-  If we dial <strong>601</strong> instead, Asterisk follows the same <code>extensions.conf</code>
-  rules and places that caller into the same conference. However, the configuration designates extension
-  601 as the admin for the conference, giving that user administrative privileges such as muting or
-  kicking participants. All of this happens automatically on the server, with Asterisk handling the
-  signaling, conference logic, and permissions behind the scenes.
-</p>
+    <img src="images/demo/600.png" alt="numpad dial 600" class="demo-img">
 
-<br>
-</br>
+    <p>
+      This Linphone screenshot shows the dialpad with <strong>600</strong> entered, displaying
+      <code>sip:600@192.168.250.37</code> at the top and the option to place the call. When we press
+      the <strong>Call</strong> button, Linphone sends a SIP INVITE to the Asterisk server at
+      <strong>192.168.250.37</strong> for extension 600. On the server side, Asterisk consults
+      <code>extensions.conf</code> and sees that extension 600 is configured to join a conference via
+      <code>ConfBridge</code>. The server then sets up the call and connects our Linphone client into the
+      conference room.
+    </p>
 
-<img src="images/demo/1001call600.png" alt="1001 in call with 600" class="demo-img"> 
-<img src="images/demo/1002call600.png" alt="1002 in call with 600" class="demo-img"> 
-<!-- nicht ^^ (mss naast elkaar?) -->
-<img src="images/demo/logconflist.png" alt="log showing confbridge llist" class="demo-img big-img"> 
+    <p>
+      If we dial <strong>601</strong> instead, Asterisk follows the same <code>extensions.conf</code>
+      rules and places that caller into the same conference. However, the configuration designates extension
+      601 as the admin for the conference, giving that user administrative privileges such as muting or
+      kicking participants. All of this happens automatically on the server, with Asterisk handling the
+      signaling, conference logic, and permissions behind the scenes.
+    </p>
 
-</main>
-<footer>© 2025 — Asterisk ConfBridge Project</footer>
+    <br>
+    </br>
+
+    <div class="image-row2">
+      <img src="images/demo/1001call600.png" alt="1001 in call with 600" class="demo-img2">
+      <img src="images/demo/Schermafbeelding 2025-11-28 174224.png" alt="1002 in call with 600" class="demo-img2">
+    </div>
+
+    <br>
+
+    <img src="images/demo/logconflist.png" alt="log showing confbridge llst" class="demo-img big-img">
+
+  </main>
+  <footer>© 2025 — Asterisk ConfBridge Project</footer>
 
 </body>
+
 </html>

@@ -292,3 +292,85 @@ code {
     border-radius: 3px;        /* Rounded corners */
     font-family: monospace;    /* Monospace for code look */
 }
+
+/* Script Wrapper */
+#scripts {
+  margin-top: 40px;
+}
+
+/* Download button */
+.download-btn {
+  display: inline-block;
+  background: #4a90e2;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.download-btn:hover {
+  background: #3577c9;
+}
+
+/* Script Blocks */
+.script-block {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fafafa;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* Toggle button */
+.script-toggle {
+  width: 100%;
+  background: #37474F;
+  color: white;
+  text-align: left;
+  padding: 12px 15px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s;
+}
+
+.script-toggle:hover {
+  background: #455A64;
+}
+
+/* Code block */
+.script-block pre {
+  margin: 0;
+  padding: 15px;
+  background: #1e1e1e;
+  color: #dcdcdc;
+  font-size: 0.9rem;
+  overflow-x: auto;
+  display: none; /* hidden initially */
+}
+
+/* Code font */
+.script-block code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.9rem;
+  white-space: pre;
+  background-color: #1e1e1e;
+}
+
+.image-row2 {
+  display: flex;              /* put children side by side */
+  gap: 10px;                  /* space between images */
+  justify-content: center;    /* center images horizontally */
+  flex-wrap: wrap;            /* allow wrapping on smaller screens */
+}
+
+.demo-img2 {
+  max-width: 48%;             /* adjust width to fit side by side */
+  height: auto;
+  display: block;
+}
+
