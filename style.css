@@ -238,7 +238,7 @@ nav a:hover {
     display: block;
     width: 100%;
     max-width: 600px;
-    margin: 0 auto 15px;
+    margin: 0 auto 1px;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
 }
@@ -369,8 +369,66 @@ code {
 }
 
 .demo-img2 {
-  max-width: 48%;             /* adjust width to fit side by side */
+  width: 48%;             /* adjust width to fit side by side */
   height: auto;
   display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
 }
 
+.demo-img2:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.demo-img3 {
+  width: 29%;             /* adjust width to fit side by side */
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.demo-img3:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.demo-img4 {
+  width: 69%;             /* adjust width to fit side by side */
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.demo-img4:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.demo-img5 {
+  width: 45%;             /* adjust width to fit side by side */
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.demo-img5:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.demo-img6 {
+  width: 53%;             /* adjust width to fit side by side */
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.demo-img6:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
